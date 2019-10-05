@@ -30,6 +30,7 @@ export default class Profile extends React.Component {
 
     return (
       <React.Fragment>
+        <br />
         <CoreLifts coreLifts={ coreLifts }/>
         <br />
         <hr />

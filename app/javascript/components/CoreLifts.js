@@ -28,6 +28,7 @@ export default class CoreLifts extends React.Component {
                 <Col xs="6" sm="4">Front Squat: { value.front_squat }</Col>
                 <Col xs="6" sm="4">Deadlift: { value.deadlift }</Col>
               </Row>
+              <br />
               <Row>
                 <Col sm={{ size: 'auto', offset: 1 }}>Bench Press: { value.bench_press }</Col>
                 <Col sm={{ size: 'auto', offset: 1 }}>Strict Press: { value.strict_press }</Col>
@@ -48,6 +49,7 @@ export default class CoreLifts extends React.Component {
                 Deadlift: <Input type="text" name="deadlift" placeholder={value.deadlift} />
               </Col>
             </Row>
+            <br />
             <Row>
               <Col sm={{ size: 'auto', offset: 1 }}>
                 Bench Press: <Input type="text" name="bench_press" placeholder={value.bench_press} />

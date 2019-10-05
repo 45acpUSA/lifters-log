@@ -1,3 +1,15 @@
 // Place all the styles related to the Olympic_Lifts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#updateButton {
+  float: right;
+}
+
+#saveButton {
+  float: left;
+}
+
+#cancelButton {
+  float: right;
+}
