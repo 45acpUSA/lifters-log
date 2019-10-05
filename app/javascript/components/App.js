@@ -1,5 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
+import { HashRouter as Router } from 'react-router-dom'
+import Routes from './Routes'
 
 export default class App extends React.Component {
   render () {
@@ -11,6 +12,14 @@ export default class App extends React.Component {
     } = this.props
     return (
       <React.Fragment>
+        <Router>
+          <Routes
+            currentUser={ user }
+            userLoggedIn={ user_logged_in }
+            userSignInRoute={ user_sign_in_route }
+            userSignOutRoute={ user_sign_out_route }
+          />
+        </Router>
       </React.Fragment>
     );
   }

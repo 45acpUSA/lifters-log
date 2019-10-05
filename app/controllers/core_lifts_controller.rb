@@ -2,9 +2,11 @@ class CoreLiftsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
 	before_action :load_lift, except: %i[index create]
 	
-	def index
-		lifts = CoreLift.all
-		render json: lifts, status: 200
+  def index
+    # lift = CoreLift.where({ user_id: current_user.id })
+    # render json: lift, status: 200
+    lifts = CoreLift.all
+    render json: lifts, status: 200
 	end
 
 	def show
@@ -44,7 +46,7 @@ class CoreLiftsController < ApplicationController
 	private
 
 	def lift_params
-		params.require(:core_lift).permit(:date, :back_squat, :front_squat, :deadlift, :bench_press, :strict_press)
+		params.require(:core_lift).permit(:back_squat, :front_squat, :deadlift, :bench_press, :strict_press)
 	end
 
 	def load_lift

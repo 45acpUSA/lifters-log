@@ -2,9 +2,9 @@ class OlympicLiftsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
 	before_action :load_lift, except: %i[index create]
 	
-	def index
-		lifts = OlympicLift.all
-		render json: lifts, status: 200
+  def index
+    lift = OlympicLift.where({ user_id: current_user.id })
+		render json: lift, status: 200
 	end
 
 	def show
@@ -44,7 +44,7 @@ class OlympicLiftsController < ApplicationController
 	private
 
 	def lift_params
-		params.require(:olympic_lift).permit(:date, :clean_and_jerk, :clean, :power_clean, :jerk, :power_jerk, :snatch, :power_snatch)
+		params.require(:olympic_lift).permit(:clean_and_jerk, :clean, :power_clean, :jerk, :power_jerk, :snatch, :power_snatch)
 	end
 
 	def load_lift
