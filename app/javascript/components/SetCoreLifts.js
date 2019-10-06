@@ -1,6 +1,6 @@
 import React from "react"
-import { Link, Redirect } from 'react-router-dom'
 import { Button, FormGroup, Label, Input } from 'reactstrap'
+import '../../assets/stylesheets/core_lifts.scss'
 
 export default class SetCoreLifts extends React.Component {
   constructor(props) {
@@ -13,7 +13,6 @@ export default class SetCoreLifts extends React.Component {
         bench_press: '',
         strict_press: '',
       },
-      success: false,
     }
   }
 
@@ -32,14 +31,13 @@ export default class SetCoreLifts extends React.Component {
         deadlift: '',
         bench_press: '',
         strict_press: ''
-      },
-      success: false,
+      }
     })
   }
 
   handleFormSubmit = event => {
     event.preventDefault()
-    const { attributes, success } = this.state
+    const { attributes } = this.state
     let userId = this.props.currentUser.id
 
     fetch(`/users/${userId}/core_lifts.json`, {
@@ -56,18 +54,20 @@ export default class SetCoreLifts extends React.Component {
     .then(data => {
       console.log("Successful" + data)
     })
-
-    let redirect = success === false ? true : false
-    this.setState({ success: redirect })
+    .then(success => {
+      fetch('/users/:user_id/core_lifts.json')
+      .then(resp => resp.json())
+      .then(data => this.props.handleNewCoreLift(data))
+    })
   }
 
   render () {
-    const { attributes, success } = this.state
+    const { attributes } = this.state
     return (
       <React.Fragment>
         <div className="row">
           <div className="col-md-4" id="entireForm">
-            <h1 id="title">Set Core Lifts</h1>
+            <h1>Set Core Lifts</h1>
             <FormGroup className="form-horizontal">
               <div className="form-group">
                 <Label className="control-label" for="back_squat">Back Squat</Label>
@@ -124,17 +124,8 @@ export default class SetCoreLifts extends React.Component {
               </div>
             </FormGroup>
 
-            <Button color="primary" onClick={ this.handleFormSubmit }>Save</Button>
-            <Button color="secondary" onClick={ this.handleClearForm }>Clear</Button>
-            <br />
-            <br />
-            <hr />
-            <div>
-              <Link to='/'>Return to My Profile</Link>
-            </div>
-            {success &&
-              <Redirect to='/' />
-            }
+            <Button color="primary" id="newCoreLiftSaveButton" onClick={ this.handleFormSubmit }>Save</Button>
+            <Button color="secondary" id="newCoreLiftClearButton" onClick={ this.handleClearForm }>Clear</Button>
           </div>
         </div>
       </React.Fragment>

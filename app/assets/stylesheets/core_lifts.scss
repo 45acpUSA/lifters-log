@@ -12,3 +12,21 @@
 #cancelButton {
   float: right;
 }
+
+#entireForm {
+  position: relative;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+}
+
+#newCoreLiftSaveButton {
+  float: left,
+}
+
+#newCoreLiftClearButton {
+  float: right,
+}

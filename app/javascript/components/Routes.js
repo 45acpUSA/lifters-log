@@ -35,10 +35,6 @@ export default class Routes extends React.Component {
     })
   }
 
-  handleNewCoreLifts = data => {
-
-  }
-
   render () {
     const { currentUser, userLoggedIn, userSignInRoute, userSignOutRoute } = this.props
     return (
