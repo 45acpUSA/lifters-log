@@ -2,11 +2,11 @@ class CoreLiftsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
 	before_action :load_lift, except: %i[index create]
 	
-  def index
-    # lift = CoreLift.where({ user_id: current_user.id })
-    # render json: lift, status: 200
-    lifts = CoreLift.all
-    render json: lifts, status: 200
+	def index
+		if user_signed_in?
+			lift = CoreLift.where({ user_id: current_user.id })
+			render json: lift, status: 200
+		end
 	end
 
 	def show
@@ -16,7 +16,7 @@ class CoreLiftsController < ApplicationController
 	end
 
 	def create
-		lift = current_user.core_lifts.new(lift_params)
+		lift = CoreLift.new(lift_params)
 		if lift.save
 			render json: lift, status: 201
 		else
@@ -28,11 +28,7 @@ class CoreLiftsController < ApplicationController
 	end
 
 	def update
-		if current_user.core_lifts.update(lift_params)
-			redirect_to users_core_lifts_path
-		else
-			render :edit
-		end
+		current_user.core_lift.update(lift_params)
 	end
 
 	def destroy
@@ -46,7 +42,7 @@ class CoreLiftsController < ApplicationController
 	private
 
 	def lift_params
-		params.require(:core_lift).permit(:back_squat, :front_squat, :deadlift, :bench_press, :strict_press)
+		params.permit(:user_id, :back_squat, :front_squat, :deadlift, :bench_press, :strict_press)
 	end
 
 	def load_lift

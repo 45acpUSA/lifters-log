@@ -5,8 +5,18 @@ import '../../assets/stylesheets/olympic_lifts.scss'
 export default class OlympicLifts extends React.Component {
   constructor(props) {
     super(props)
+    const { value } = this.props
     this.state = {
       editable: false,
+      attributes: {
+        clean_and_jerk: value.clean_and_jerk,
+        clean: value.clean,
+        power_clean: value.power_clean,
+        jerk: value.jerk,
+        power_jerk: value.power_jerk,
+        snatch: value.snatch,
+        power_snatch: value.power_snatch
+      }
     }
   }
 
@@ -16,73 +26,107 @@ export default class OlympicLifts extends React.Component {
     })
   }
 
-  olyLiftsDisplay = () => {
-    const { olyLifts } = this.props
-    return olyLifts.map(value => {
-      if (this.state.editable === false ) {
-        return (
-          <Container>
-            <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
-              <Row>
-                <Col xs="6">Clean & Jerk: { value.clean_and_jerk }</Col>
-                <Col xs="6" sm="4">Snatch: { value.snatch }</Col>
-              </Row>
-              <br />
-              <Row>
-                <Col>Clean: { value.clean }</Col>
-                <Col>Jerk: { value.jerk }</Col>
-              </Row>
-              <br />
-              <Row>
-                <Col>Power Clean: { value.power_clean }</Col>
-                <Col>Power Jerk: { value.power_jerk }</Col>
-                <Col></Col>
-                <Col>Power Snatch: { value.power_snatch }</Col>
-              </Row>
-          </Container>
-        )
-      } else {
-        return (
-          <Container>
-            <Row>
-              <Col xs="6" sm="4">
-                Back Squat: <Input type="text" name="back_squat" placeholder={value.back_squat} />
-              </Col>
-              <Col xs="6" sm="4">
-                Front Squat: <Input type="text" name="front_squat" placeholder={value.front_squat} />
-              </Col>
-              <Col xs="6" sm="4">
-                Deadlift: <Input type="text" name="deadlift" placeholder={value.deadlift} />
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              <Col sm={{ size: 'auto', offset: 1 }}>
-                Bench Press: <Input type="text" name="bench_press" placeholder={value.bench_press} />
-              </Col>
-              <Col sm={{ size: 'auto', offset: 1 }}>
-                Strict Press: <Input type="text" name="strict_press" placeholder={value.strict_press} />
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              <Col>
-                <Button color="primary" type="submit" id="saveButton">Save</Button>
-              </Col>
-              <Col>
-                <Button color="secondary" onClick={this.toggle} id="cancelButton">Cancel</Button>
-              </Col>
-            </Row>
-          </Container>
-        )
+  handleChange = event =>{
+    const { attributes } = this.state  
+    attributes[event.target.name] = event.target.value
+    this.setState({ attributes })
+  }
+
+  handleUpdate = () => {
+    const { attributes } = this.state
+    let userId = this.props.currentUser.id
+    let id = this.props.value.id
+
+    fetch(`/users/${userId}/olympic_lifts/${id}.json`, {
+      method: "PATCH",
+      body: JSON.stringify(attributes),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       }
     })
+    .then(resp => {
+      resp.json()
+    })
+    .then(data => {
+      console.log(`Successful ${data}`)
+    })
+    this.toggle()
   }
 
   render () {
+    const { attributes, editable } = this.state
     return (
       <React.Fragment>
-        {this.olyLiftsDisplay()}
+        {!editable &&
+          <Container>
+            <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
+              <Row>
+                <Col sm={{ size: 'auto', offset: 2 }}>Clean & Jerk: { attributes.clean_and_jerk }</Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>Snatch: { attributes.snatch }</Col>
+              </Row>
+              <br />
+              <Row>
+                <Col sm={{ size: 'auto', offset: 1 }}>Clean: { attributes.clean }</Col>
+                <Col sm={{ size: 'auto', offset: 1 }}>Jerk: { attributes.jerk }</Col>
+              </Row>
+              <br />
+              <Row>
+                <Col xs="6" sm="4">Power Clean: { attributes.power_clean }</Col>
+                <Col xs="6" sm="4">Power Jerk: { attributes.power_jerk }</Col>
+                <Col xs="6" sm="4">Power Snatch: { attributes.power_snatch }</Col>
+              </Row>
+          </Container>
+        }
+        {editable &&
+          <Container>
+              <Row>
+                <Col xs="6">
+                  Clean & Jerk:
+                  <Input type="text" name="clean_and_jerk" onChange={ this.handleChange } placeholder={ attributes.clean_and_jerk } />
+                </Col>
+                <Col xs="6" sm="4">
+                  Snatch:
+                  <Input type="text" name="snatch" onChange={ this.handleChange } placeholder={ attributes.snatch } />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col>
+                  Clean:
+                  <Input type="text" name="clean" onChange={ this.handleChange } placeholder={ attributes.clean } />
+                </Col>
+                <Col>
+                  Jerk:
+                  <Input type="text" name="jerk" onChange={ this.handleChange } placeholder={ attributes.jerk } />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col xs="6" sm="4">
+                  Power Clean:
+                  <Input type="text" name="power_clean" onChange={ this.handleChange } placeholder={ attributes.power_clean } />
+                </Col>
+                <Col xs="6" sm="4">
+                  Power Jerk:
+                  <Input type="text" name="power_jerk" onChange={ this.handleChange } placeholder={ attributes.power_jerk } />
+                </Col>
+                <Col xs="6" sm="4">
+                  Power Snatch:
+                  <Input type="text" name="power_snatch" onChange={ this.handleChange } placeholder={ attributes.power_snatch } />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col>
+                  <Button color="primary" onClick={ this.handleUpdate } id="saveButton">Save</Button>
+                </Col>
+                <Col>
+                  <Button color="secondary" onClick={this.toggle} id="cancelButton">Cancel</Button>
+                </Col>
+              </Row>
+          </Container>
+        }
       </React.Fragment>
     );
   }

@@ -17,6 +17,8 @@ import {
 //Routes
 import Profile from './Profile'
 import UserSession from './UserSession'
+// import SetCoreLifts from './SetCoreLifts'
+// import SetOlympicLifts from './SetOlympicLifts'
 
 
 export default class Routes extends React.Component {
@@ -31,6 +33,10 @@ export default class Routes extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     })
+  }
+
+  handleNewCoreLifts = data => {
+
   }
 
   render () {
@@ -98,6 +104,28 @@ export default class Routes extends React.Component {
           }
         />
 
+          {/* <Route
+            path="/users/:user_id/new_core_lifts"
+            render={
+              props =>
+              <SetCoreLifts
+                {...props}
+                currentUser={ currentUser }
+              />
+            }
+          />
+
+          <Route
+            path="/users/:user_id/new_olympic_lifts"
+            render={
+              props =>
+              <SetOlympicLifts
+                {...props}
+                currentUser={ currentUser }
+              />
+            }
+          /> */}
+
           <Route
             path="/users/session"
             render={
@@ -110,6 +138,7 @@ export default class Routes extends React.Component {
               />
             }
           />
+
         </Switch>
       </React.Fragment>
     );
