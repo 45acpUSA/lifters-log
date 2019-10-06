@@ -60,14 +60,14 @@ export default class CoreLifts extends React.Component {
           <Container>
             <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
               <Row>
-                <Col xs="6" sm="4">Back Squat: { attributes.back_squat }</Col>
-                <Col xs="6" sm="4">Front Squat: { attributes.front_squat }</Col>
-                <Col xs="6" sm="4">Deadlift: { attributes.deadlift }</Col>
+                <Col xs="6" sm="4">Back Squat: { attributes.back_squat } lbs.</Col>
+                <Col xs="6" sm="4">Front Squat: { attributes.front_squat } lbs.</Col>
+                <Col xs="6" sm="4">Deadlift: { attributes.deadlift } lbs.</Col>
               </Row>
               <br />
               <Row>
-                <Col sm={{ size: 'auto', offset: 2 }}>Bench Press: { attributes.bench_press }</Col>
-                <Col sm={{ size: 'auto', offset: 2 }}>Strict Press: { attributes.strict_press }</Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>Bench Press: { attributes.bench_press } lbs.</Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>Strict Press: { attributes.strict_press } lbs.</Col>
               </Row>
           </Container>
         }
@@ -77,14 +77,17 @@ export default class CoreLifts extends React.Component {
               <Col xs="6" sm="4">
                 Back Squat:
                 <Input type="text" name="back_squat" onChange={ this.handleChange } placeholder={ attributes.back_squat } />
+                lbs.
               </Col>
               <Col xs="6" sm="4">
                 Front Squat:
                 <Input type="text" name="front_squat" onChange={ this.handleChange } placeholder={ attributes.front_squat } />
+                lbs.
               </Col>
               <Col xs="6" sm="4">
                 Deadlift:
                 <Input type="text" name="deadlift" onChange={ this.handleChange } placeholder={ attributes.deadlift } />
+                lbs.
               </Col>
             </Row>
             <br />
@@ -92,10 +95,12 @@ export default class CoreLifts extends React.Component {
               <Col sm={{ size: 'auto', offset: 1 }}>
                 Bench Press:
                 <Input type="text" name="bench_press" onChange={ this.handleChange } placeholder={ attributes.bench_press } />
+                lbs.
               </Col>
               <Col sm={{ size: 'auto', offset: 1 }}>
                 Strict Press:
                 <Input type="text" name="strict_press" onChange={ this.handleChange } placeholder={ attributes.strict_press } />
+                lbs.
               </Col>
             </Row>
             <br />

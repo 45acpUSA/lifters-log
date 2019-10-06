@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import CoreLifts from './CoreLifts'
 import OlympicLifts from './OlympicLifts'

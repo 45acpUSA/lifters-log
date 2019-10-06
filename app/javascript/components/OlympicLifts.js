@@ -62,19 +62,19 @@ export default class OlympicLifts extends React.Component {
           <Container>
             <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
               <Row>
-                <Col sm={{ size: 'auto', offset: 2 }}>Clean & Jerk: { attributes.clean_and_jerk }</Col>
-                <Col sm={{ size: 'auto', offset: 2 }}>Snatch: { attributes.snatch }</Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>Clean & Jerk: { attributes.clean_and_jerk } lbs.</Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>Snatch: { attributes.snatch } lbs.</Col>
               </Row>
               <br />
               <Row>
-                <Col sm={{ size: 'auto', offset: 1 }}>Clean: { attributes.clean }</Col>
-                <Col sm={{ size: 'auto', offset: 1 }}>Jerk: { attributes.jerk }</Col>
+                <Col sm={{ size: 'auto', offset: 1 }}>Clean: { attributes.clean } lbs.</Col>
+                <Col sm={{ size: 'auto', offset: 1 }}>Jerk: { attributes.jerk } lbs.</Col>
               </Row>
               <br />
               <Row>
-                <Col xs="6" sm="4">Power Clean: { attributes.power_clean }</Col>
-                <Col xs="6" sm="4">Power Jerk: { attributes.power_jerk }</Col>
-                <Col xs="6" sm="4">Power Snatch: { attributes.power_snatch }</Col>
+                <Col xs="6" sm="4">Power Clean: { attributes.power_clean } lbs.</Col>
+                <Col xs="6" sm="4">Power Jerk: { attributes.power_jerk } lbs.</Col>
+                <Col xs="6" sm="4">Power Snatch: { attributes.power_snatch } lbs.</Col>
               </Row>
           </Container>
         }
@@ -84,10 +84,12 @@ export default class OlympicLifts extends React.Component {
                 <Col xs="6">
                   Clean & Jerk:
                   <Input type="text" name="clean_and_jerk" onChange={ this.handleChange } placeholder={ attributes.clean_and_jerk } />
+                  lbs.
                 </Col>
                 <Col xs="6" sm="4">
                   Snatch:
                   <Input type="text" name="snatch" onChange={ this.handleChange } placeholder={ attributes.snatch } />
+                  lbs.
                 </Col>
               </Row>
               <br />
@@ -95,10 +97,12 @@ export default class OlympicLifts extends React.Component {
                 <Col>
                   Clean:
                   <Input type="text" name="clean" onChange={ this.handleChange } placeholder={ attributes.clean } />
+                  lbs.
                 </Col>
                 <Col>
                   Jerk:
                   <Input type="text" name="jerk" onChange={ this.handleChange } placeholder={ attributes.jerk } />
+                  lbs.
                 </Col>
               </Row>
               <br />
@@ -106,14 +110,17 @@ export default class OlympicLifts extends React.Component {
                 <Col xs="6" sm="4">
                   Power Clean:
                   <Input type="text" name="power_clean" onChange={ this.handleChange } placeholder={ attributes.power_clean } />
+                  lbs.
                 </Col>
                 <Col xs="6" sm="4">
                   Power Jerk:
                   <Input type="text" name="power_jerk" onChange={ this.handleChange } placeholder={ attributes.power_jerk } />
+                  lbs.
                 </Col>
                 <Col xs="6" sm="4">
                   Power Snatch:
                   <Input type="text" name="power_snatch" onChange={ this.handleChange } placeholder={ attributes.power_snatch } />
+                  lbs.
                 </Col>
               </Row>
               <br />

@@ -76,6 +76,7 @@ export default class SetCoreLifts extends React.Component {
                   name="back_squat"
                   onChange={ this.handleChange }
                   value={ attributes.back_squat }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -87,6 +88,7 @@ export default class SetCoreLifts extends React.Component {
                   name="front_squat"
                   onChange={ this.handleChange }
                   value={ attributes.front_squat }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -98,6 +100,7 @@ export default class SetCoreLifts extends React.Component {
                   name="deadlift"
                   onChange={ this.handleChange }
                   value={ attributes.deadlift }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -109,6 +112,7 @@ export default class SetCoreLifts extends React.Component {
                   name="bench_press"
                   onChange={ this.handleChange }
                   value={ attributes.bench_press }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -120,6 +124,7 @@ export default class SetCoreLifts extends React.Component {
                   name="strict_press"
                   onChange={ this.handleChange }
                   value={ attributes.strict_press }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>

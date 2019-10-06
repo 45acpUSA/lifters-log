@@ -81,6 +81,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="clean_and_jerk"
                   onChange={ this.handleChange }
                   value={ attributes.clean_and_jerk }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -92,6 +93,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="snatch"
                   onChange={ this.handleChange }
                   value={ attributes.snatch }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -103,6 +105,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="clean"
                   onChange={ this.handleChange }
                   value={ attributes.clean }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -114,6 +117,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="jerk"
                   onChange={ this.handleChange }
                   value={ attributes.jerk }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -125,6 +129,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="power_clean"
                   onChange={ this.handleChange }
                   value={ attributes.power_clean }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -136,6 +141,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="power_jerk"
                   onChange={ this.handleChange }
                   value={ attributes.power_jerk }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>
@@ -147,6 +153,7 @@ export default class SetOlympicLifts extends React.Component {
                   name="power_snatch"
                   onChange={ this.handleChange }
                   value={ attributes.power_snatch }
+                  placeholder="weight in lbs"
                 />
               </div>
             </FormGroup>

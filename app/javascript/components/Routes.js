@@ -17,8 +17,6 @@ import {
 //Routes
 import Profile from './Profile'
 import UserSession from './UserSession'
-// import SetCoreLifts from './SetCoreLifts'
-// import SetOlympicLifts from './SetOlympicLifts'
 
 
 export default class Routes extends React.Component {
@@ -90,37 +88,15 @@ export default class Routes extends React.Component {
 
         <Switch>
           <Route
-          exact path="/"
-          render={
-            props =>
-            <Profile
-              {...props}
-              currentUser={ currentUser }
-            />
-          }
-        />
-
-          {/* <Route
-            path="/users/:user_id/new_core_lifts"
+            exact path="/"
             render={
               props =>
-              <SetCoreLifts
+              <Profile
                 {...props}
                 currentUser={ currentUser }
               />
             }
           />
-
-          <Route
-            path="/users/:user_id/new_olympic_lifts"
-            render={
-              props =>
-              <SetOlympicLifts
-                {...props}
-                currentUser={ currentUser }
-              />
-            }
-          /> */}
 
           <Route
             path="/users/session"
