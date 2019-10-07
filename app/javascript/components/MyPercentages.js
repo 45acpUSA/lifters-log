@@ -126,7 +126,7 @@ export default class MyPercentages extends React.Component {
             </Col>
             <Col xs="6">
               <FormGroup>
-                <Label for="olyLift">Oly Lifts</Label>
+                <Label for="olyLift">Olympic Lifts</Label>
                 <Input 
                   type="select" 
                   name="olyLift"
