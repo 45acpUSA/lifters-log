@@ -5,3 +5,11 @@
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+tr:nth-child(odd) {
+  color: white;
+}
+
+Label {
+  color: white;
+}

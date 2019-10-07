@@ -17,16 +17,18 @@ export default class Profile extends React.Component {
   }
 
   componentDidMount = () => {
-    Promise.all([fetch(`/users/:user_id/core_lifts.json`), fetch(`/users/:user_id/olympic_lifts.json`)])
-    .then(([response1, response2]) => {
-      return Promise.all([response1.json(), response2.json()])
-    })
-    .then(([data1, data2]) => {
-      this.setState({
-        coreLifts: data1,
-        olyLifts: data2
+    if (this.props.currentUser) {
+      Promise.all([fetch(`/users/:user_id/core_lifts.json`), fetch(`/users/:user_id/olympic_lifts.json`)])
+      .then(([response1, response2]) => {
+        return Promise.all([response1.json(), response2.json()])
       })
-    })
+      .then(([data1, data2]) => {
+        this.setState({
+          coreLifts: data1,
+          olyLifts: data2
+        })
+      })
+    }
   }
 
   toggleCoreLift = () => {

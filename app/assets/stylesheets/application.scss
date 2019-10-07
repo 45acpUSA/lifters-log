@@ -14,3 +14,22 @@
  *= require_self
  */
  @import 'bootstrap';
+
+ body {
+  background: image-url('background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  font-size-adjust: inherit;
+ }
+
+ hr {
+   background-color: white;
+ }
+
+ #userSessionMessage {
+   color: white;
+ }

@@ -46,7 +46,7 @@ export default class Routes extends React.Component {
       alignItems: "center",
       width: "100%",
       height: styles.topBarHeight,
-      backgroundColor: styles.white(),
+      backgroundColor: "#333",
       borderBottom: `1px solid ${styles.black(0.1)}`,
       fontWeight: "bold",
       padding: "0px 20px",
@@ -63,7 +63,7 @@ export default class Routes extends React.Component {
 
     return (
       <React.Fragment>
-        <Navbar color="light" light expand="md" style={ navBarStyle }>
+        <Navbar expand="md" style={ navBarStyle }>
           <NavbarBrand href="/">Lifter's Log</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
