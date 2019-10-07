@@ -10,17 +10,32 @@ export default class App extends React.Component {
       user_sign_in_route,
       user_sign_out_route,
     } = this.props
+
+    const styles = {
+      white: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+      black: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+      topBarHeight: 40,
+      footerMenuHeight: 50
+    }
+
     return (
-      <React.Fragment>
+      <div
+        style={{
+          backgroundColor: styles.black(0.05),
+          minHeight: "100vh",
+          position: "relative"
+        }}
+      >
         <Router>
           <Routes
             currentUser={ user }
             userLoggedIn={ user_logged_in }
             userSignInRoute={ user_sign_in_route }
             userSignOutRoute={ user_sign_out_route }
+            styles={ styles }
           />
         </Router>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {
   Collapse,
   Navbar,
@@ -15,9 +15,10 @@ import {
 } from 'reactstrap'
 
 //Routes
+import MyPercentages from './MyPercentages'
+import PercentageFinder from './PercentageFinder'
 import Profile from './Profile'
 import UserSession from './UserSession'
-import MyPercentages from './MyPercentages'
 
 
 export default class Routes extends React.Component {
@@ -35,16 +36,39 @@ export default class Routes extends React.Component {
   }
 
   render () {
-    const { currentUser, userLoggedIn, userSignInRoute, userSignOutRoute } = this.props
+    const { currentUser, userLoggedIn, userSignInRoute, userSignOutRoute, styles } = this.props
+
+    const navBarStyle = {
+      position: "fixed",
+      top: 0,
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      height: styles.topBarHeight,
+      backgroundColor: styles.white(),
+      borderBottom: `1px solid ${styles.black(0.1)}`,
+      fontWeight: "bold",
+      padding: "0px 20px",
+      boxSizing: "border-box"
+    }
+
+    const contentStyle = {
+      paddingTop: styles.topBarHeight + 20,
+      paddingRight: 20,
+      paddingBottom: styles.footerMenuHeight + 20,
+      paddingLeft: 20
+    }
+
     return (
       <React.Fragment>
-        <Navbar color="light" light expand="md">
+        <Navbar color="light" light expand="md" style={ navBarStyle }>
           <NavbarBrand href="/">Lifter's Log</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#">Percentages</NavLink>
+                <NavLink href="#percentage_finder">Percentage Finder</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#">Plate Math</NavLink>
@@ -86,35 +110,39 @@ export default class Routes extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+        
+        <div style={ contentStyle }>
+          <Switch>
+            <Route
+              exact path="/"
+              render={
+                props =>
+                <Profile
+                  {...props}
+                  currentUser={ currentUser }
+                />
+              }
+            />
 
-        <Switch>
-          <Route
-            exact path="/"
-            render={
-              props =>
-              <Profile
-                {...props}
-                currentUser={ currentUser }
-              />
-            }
-          />
+            <Route path="/percentage_finder" component={ PercentageFinder } />
 
-          <Route path="/users/percentages" component={ MyPercentages } />
+            <Route path="/users/percentages" component={ MyPercentages } />
 
-          <Route
-            path="/users/session"
-            render={
-              props =>
-              <UserSession
-                {...props}
-                userLoggedIn={ userLoggedIn }
-                userSignInRoute={ userSignInRoute }
-                userSignOutRoute={ userSignOutRoute }
-              />
-            }
-          />
+            <Route
+              path="/users/session"
+              render={
+                props =>
+                <UserSession
+                  {...props}
+                  userLoggedIn={ userLoggedIn }
+                  userSignInRoute={ userSignInRoute }
+                  userSignOutRoute={ userSignOutRoute }
+                />
+              }
+            />
 
-        </Switch>
+          </Switch>
+        </div>
       </React.Fragment>
     );
   }
