@@ -59,11 +59,13 @@ export default class Profile extends React.Component {
       })
     }
 
-    let olyLiftsDisplay = olyLifts.map((value, index) => {
-      return (
-        <OlympicLifts value={ value } currentUser={ currentUser } key={ index } />
-      )
-    })
+    const olyLiftsDisplay = () => {
+      return olyLifts.map((value, index) => {
+        return (
+          <OlympicLifts value={ value } currentUser={ currentUser } key={ index } />
+        )
+      })
+    }
 
     return (
       <React.Fragment>
@@ -110,7 +112,7 @@ export default class Profile extends React.Component {
           <div>
             <hr />
             <br />
-            { olyLiftsDisplay }
+            { olyLiftsDisplay() }
           </div>
         }
 

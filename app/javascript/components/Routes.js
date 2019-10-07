@@ -17,7 +17,7 @@ import {
 //Routes
 import Profile from './Profile'
 import UserSession from './UserSession'
-import Percentages from './Percentages'
+import MyPercentages from './MyPercentages'
 
 
 export default class Routes extends React.Component {
@@ -56,10 +56,10 @@ export default class Routes extends React.Component {
                     {`${currentUser.first_name}'s Stuff`}
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem>
+                    <DropdownItem href="#">
                       My Profile
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItem href="#users/percentages">
                       My Percentages
                     </DropdownItem>
                     <DropdownItem divider />
@@ -99,7 +99,7 @@ export default class Routes extends React.Component {
             }
           />
 
-          <Route path="/users/percentages" component={ Percentages } />
+          <Route path="/users/percentages" component={ MyPercentages } />
 
           <Route
             path="/users/session"
