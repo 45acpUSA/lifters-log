@@ -17,6 +17,7 @@ import {
 //Routes
 import MyPercentages from './MyPercentages'
 import PercentageFinder from './PercentageFinder'
+import PlateMath from './PlateMath'
 import Profile from './Profile'
 import UserSession from './UserSession'
 
@@ -72,7 +73,7 @@ export default class Routes extends React.Component {
                 <NavLink href="#percentage_finder">Percentage Finder</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Plate Math</NavLink>
+                <NavLink href="#plate_math">Plate Math</NavLink>
               </NavItem>
 
               {userLoggedIn &&
@@ -126,6 +127,17 @@ export default class Routes extends React.Component {
             />
 
             <Route path="/percentage_finder" component={ PercentageFinder } />
+
+            <Route
+              path="/plate_math"
+              render={
+                props =>
+                <PlateMath
+                  {...props}
+                  currentUser={ currentUser }
+                />
+              }
+            />
 
             <Route path="/users/percentages" component={ MyPercentages } />
 

@@ -8,6 +8,7 @@ export default class PercentageFinder extends React.Component {
     this.state = {
       attributes: {
         weight: '',
+        kilos: '',
         lowestPercent: '',
         highestPercent: ''
       }
@@ -21,7 +22,7 @@ export default class PercentageFinder extends React.Component {
   }
 
   handleTableData = () => {
-    const { weight, lowestPercent, highestPercent } = this.state.attributes
+    const { weight, kilos, lowestPercent, highestPercent } = this.state.attributes
     let newWeight = parseInt(weight)
     let high = parseInt(highestPercent)
     let low = parseInt(lowestPercent)
@@ -30,27 +31,44 @@ export default class PercentageFinder extends React.Component {
     if (high - low > 0) {
       for (let i=low; i<=high; i+=incrementor) {
         let percent = `${i}%`
-        let percentWeight = `${Math.ceil(newWeight * (i/100))} lbs.`
+        let pounds = `${Math.ceil(newWeight * (i/100))} lbs`
         tData.push(percent)
-        tData.push(percentWeight)
+        tData.push(pounds)
+        if (kilos) {
+          let kilos = `${Math.ceil((newWeight / 2.2) * (i/100))} kgs`
+          tData.push(kilos)
+        }
       }
+      return tData.map((value, index) => {
+        if (kilos) {
+          if (index % 3 === 0) {
+            return (
+              <tr key={ index }>
+                <td>{ value }</td>
+                <td>{ tData[index+1] }</td>
+                <td>{ tData[index+2] }</td>
+              </tr>
+            )
+          }
+        } else {
+          if (index % 2 === 0) {
+            return (
+              <tr key={ index }>
+                <td>{ value }</td>
+                <td>{ tData[index+1] }</td>
+              </tr>
+            )
+          }
+        }
+      })
     }
-    return tData.map((value, index) => {
-      if (index % 2 === 0) {
-        return (
-          <tr key={ index }>
-            <td>{ value }</td>
-            <td>{ tData[index+1] }</td>
-          </tr>
-        )
-      }
-    })
   }
     
   handleClearForm = () => {
     this.setState({
       attributes: {
         weight: '',
+        kilos: '',
         lowestPercent: '',
         highestPercent: ''
       }
@@ -59,7 +77,7 @@ export default class PercentageFinder extends React.Component {
       
 
   render () {
-    const { weight, lowestPercent, highestPercent } = this.state.attributes
+    const { weight, kilos, lowestPercent, highestPercent } = this.state.attributes
 
     return (
       <React.Fragment>
@@ -69,6 +87,21 @@ export default class PercentageFinder extends React.Component {
               <FormGroup>
                 <Label for="weight">Weight</Label>
                 <Input type="number" name="weight" value={ weight } onChange={ this.handleChange } />
+              </FormGroup>
+              <FormGroup tag="fieldset">
+                <legend>Unit of Measure</legend>
+                <FormGroup check>
+                  <Label check for="pounds">
+                    <Input type="checkbox" name="pounds" checked onChange={ this.handleChange } />
+                    Pounds (lbs)
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Label check for="kilos">
+                    <Input type="checkbox" name="kilos" onChange={ this.handleChange } />
+                    Kilos (kgs)
+                  </Label>
+                </FormGroup>
               </FormGroup>
             </Col>
             <Col xs="6" sm="4">
@@ -93,7 +126,7 @@ export default class PercentageFinder extends React.Component {
         <br />
         <hr />
         <br />
-        {(weight > 0 && lowestPercent > 0 && highestPercent > 0) &&
+        {(weight > 0 && lowestPercent > 0 && highestPercent > 0 && highestPercent > lowestPercent) &&
           <Container>
             <Row>
               <Col sm="12" md={{ size: 6, offset: 3 }}>
@@ -101,7 +134,10 @@ export default class PercentageFinder extends React.Component {
                   <tbody>
                     <tr>
                       <th>Percentage</th>
-                      <th>Weight (in lbs.)</th>
+                      <th>Weight (in lbs)</th>
+                      {kilos &&
+                        <th>Weight (in kgs)</th>
+                      }
                     </tr>
                     { this.handleTableData() }
                   </tbody>
