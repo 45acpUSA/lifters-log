@@ -8,6 +8,7 @@ export default class PercentageFinder extends React.Component {
     this.state = {
       attributes: {
         weight: '',
+        inKilos: '',
         kilos: '',
         lowestPercent: '',
         highestPercent: ''
@@ -22,7 +23,7 @@ export default class PercentageFinder extends React.Component {
   }
 
   handleTableData = () => {
-    const { weight, kilos, lowestPercent, highestPercent } = this.state.attributes
+    const { weight, kilos, inKilos, lowestPercent, highestPercent } = this.state.attributes
     let newWeight = parseInt(weight)
     let high = parseInt(highestPercent)
     let low = parseInt(lowestPercent)
@@ -31,11 +32,11 @@ export default class PercentageFinder extends React.Component {
     if (high - low > 0) {
       for (let i=low; i<=high; i+=incrementor) {
         let percent = `${i}%`
-        let pounds = `${Math.ceil(newWeight * (i/100))} lbs`
         tData.push(percent)
+        let pounds = inKilos ? `${Math.ceil((newWeight * 2.2) * (i/100))} lbs` : `${Math.ceil(newWeight * (i/100))} lbs`
         tData.push(pounds)
         if (kilos) {
-          let kilos = `${Math.ceil((newWeight / 2.2) * (i/100))} kgs`
+          let kilos = inKilos ? `${Math.ceil(newWeight * (i/100))} kgs` : `${Math.ceil((newWeight / 2.2) * (i/100))} kgs`
           tData.push(kilos)
         }
       }
@@ -86,34 +87,43 @@ export default class PercentageFinder extends React.Component {
             <Col xs="6" sm="4">
               <FormGroup>
                 <Label for="weight">Weight</Label>
-                <Input type="number" name="weight" value={ weight } onChange={ this.handleChange } />
+                <Input
+                  type="number"
+                  name="weight"
+                  value={ weight }
+                  onChange={ this.handleChange }
+                  placeholder="e.g. 225"
+                />
               </FormGroup>
-              <FormGroup tag="fieldset">
-                <legend>Unit of Measure</legend>
-                <FormGroup check>
-                  <Label check for="pounds">
-                    <Input type="checkbox" name="pounds" checked onChange={ this.handleChange } />
-                    Pounds (lbs)
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Label check for="kilos">
-                    <Input type="checkbox" name="kilos" onChange={ this.handleChange } />
-                    Kilos (kgs)
-                  </Label>
-                </FormGroup>
+              <FormGroup check>
+                <Label check for="inKilos">
+                <Input type="radio" name="inKilos" onChange={ this.handleChange } />
+                    Kilos?
+                </Label>
               </FormGroup>
             </Col>
             <Col xs="6" sm="4">
               <FormGroup>
                 <Label for="lowestPercent">Lowest Percent</Label>
-                <Input type="number" name="lowestPercent" value={ lowestPercent } onChange={ this.handleChange } />
+                <Input
+                  type="number"
+                  name="lowestPercent"
+                  value={ lowestPercent }
+                  onChange={ this.handleChange }
+                  placeholder="e.g. 65"
+                />
               </FormGroup>
             </Col>
             <Col xs="6" sm="4">
               <FormGroup>
                 <Label for="highestPercent">Highest Percent</Label>
-                <Input type="number" name="highestPercent" value={ highestPercent } onChange={ this.handleChange } />
+                <Input
+                  type="number"
+                  name="highestPercent"
+                  value={ highestPercent }
+                  onChange={ this.handleChange }
+                  placeholder="e.g. 85"
+                />
               </FormGroup>
             </Col>
           </Row>
@@ -128,6 +138,25 @@ export default class PercentageFinder extends React.Component {
         <br />
         {(weight > 0 && lowestPercent > 0 && highestPercent > 0 && highestPercent > lowestPercent) &&
           <Container>
+            <Row>
+              <Col sm={{ size: 'auto', offset: 5}}>
+                <FormGroup tag="fieldset">
+                  <legend>Show Percentages In:</legend>
+                  <FormGroup check>
+                    <Label check for="pounds">
+                      <Input type="checkbox" name="pounds" checked onChange={ this.handleChange } />
+                      Pounds (lbs)
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check for="kilos">
+                      <Input type="checkbox" name="kilos" onChange={ this.handleChange } />
+                      Kilos (kgs)
+                    </Label>
+                  </FormGroup>
+                </FormGroup>
+              </Col>
+            </Row>
             <Row>
               <Col sm="12" md={{ size: 6, offset: 3 }}>
                 <Table>
