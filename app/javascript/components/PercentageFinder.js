@@ -70,6 +70,7 @@ export default class PercentageFinder extends React.Component {
       attributes: {
         weight: '',
         kilos: '',
+        inKilos: '',
         lowestPercent: '',
         highestPercent: ''
       }
@@ -97,8 +98,8 @@ export default class PercentageFinder extends React.Component {
               </FormGroup>
               <FormGroup check>
                 <Label check for="inKilos">
-                <Input type="radio" name="inKilos" onChange={ this.handleChange } />
-                    Kilos?
+                  <Input type="checkbox" name="inKilos" onChange={ this.handleChange } />
+                  Kilos?
                 </Label>
               </FormGroup>
             </Col>
