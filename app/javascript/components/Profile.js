@@ -106,14 +106,12 @@ export default class Profile extends React.Component {
         {(currentUser && coreLifts.length > 0 && !showNewCore && !showNewOly) &&
           <div>
             <hr />
-            <br />
             { coreLiftsDisplay() }
           </div>
         }
         {(currentUser && olyLifts.length > 0 && !showNewCore && !showNewOly) &&
           <div>
             <hr />
-            <br />
             { olyLiftsDisplay() }
           </div>
         }

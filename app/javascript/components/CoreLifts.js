@@ -58,34 +58,51 @@ export default class CoreLifts extends React.Component {
       <React.Fragment>
         {!editable &&
           <Container>
+            <br />
             <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
               <Row>
-                <Col xs="6" sm="4">Back Squat: { attributes.back_squat } lbs.</Col>
-                <Col xs="6" sm="4">Front Squat: { attributes.front_squat } lbs.</Col>
-                <Col xs="6" sm="4">Deadlift: { attributes.deadlift } lbs.</Col>
+                <Col xs="6" sm="4">
+                  <h5>Back Squat:</h5>
+                  <h6>{ attributes.back_squat } lbs.</h6>
+                </Col>
+                <Col xs="6" sm="4">
+                  <h5>Front Squat:</h5>
+                  <h6>{ attributes.front_squat } lbs.</h6>
+                </Col>
+                <Col xs="6" sm="4">
+                  <h5>Deadlift:</h5> 
+                  <h6>{ attributes.deadlift } lbs.</h6>
+                </Col>
               </Row>
               <br />
               <Row>
-                <Col sm={{ size: 'auto', offset: 2 }}>Bench Press: { attributes.bench_press } lbs.</Col>
-                <Col sm={{ size: 'auto', offset: 2 }}>Strict Press: { attributes.strict_press } lbs.</Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>
+                  <h5>Bench Press:</h5>
+                  <h6>{ attributes.bench_press } lbs.</h6>
+                </Col>
+                <Col sm={{ size: 'auto', offset: 2 }}>
+                  <h5>Strict Press:</h5>
+                  <h6>{ attributes.strict_press } lbs.</h6>
+                </Col>
               </Row>
+              <br />
           </Container>
         }
         {editable &&
           <Container>
             <Row>
               <Col xs="6" sm="4">
-                Back Squat:
+                <h5>Back Squat:</h5>
                 <Input type="text" name="back_squat" onChange={ this.handleChange } placeholder={ attributes.back_squat } />
                 lbs.
               </Col>
               <Col xs="6" sm="4">
-                Front Squat:
+                <h5>Front Squat:</h5>
                 <Input type="text" name="front_squat" onChange={ this.handleChange } placeholder={ attributes.front_squat } />
                 lbs.
               </Col>
               <Col xs="6" sm="4">
-                Deadlift:
+                <h5>Deadlift:</h5>
                 <Input type="text" name="deadlift" onChange={ this.handleChange } placeholder={ attributes.deadlift } />
                 lbs.
               </Col>
@@ -93,12 +110,12 @@ export default class CoreLifts extends React.Component {
             <br />
             <Row>
               <Col sm={{ size: 'auto', offset: 1 }}>
-                Bench Press:
+                <h5>Bench Press:</h5>
                 <Input type="text" name="bench_press" onChange={ this.handleChange } placeholder={ attributes.bench_press } />
                 lbs.
               </Col>
               <Col sm={{ size: 'auto', offset: 1 }}>
-                Strict Press:
+                <h5>Strict Press:</h5>
                 <Input type="text" name="strict_press" onChange={ this.handleChange } placeholder={ attributes.strict_press } />
                 lbs.
               </Col>

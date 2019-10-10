@@ -16,7 +16,7 @@
  @import 'bootstrap';
 
  body {
-  background: image-url('background.jpg') no-repeat center center fixed;
+  background: image-url('background.jpg') no-repeat center center fixed transparentize($color: white, $amount: 0.5);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -32,4 +32,12 @@
 
  #userSessionMessage {
    color: white;
+ }
+
+ .improveVisibility {
+   background-color: rgb(36, 124, 206);
+ }
+
+ .needsCentering {
+   text-align: center;
  }
