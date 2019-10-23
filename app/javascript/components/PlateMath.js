@@ -69,16 +69,17 @@ export default class PlateMath extends React.Component {
       (parseInt(fives) * 10) +
       (parseInt(twoPointFives) * 5)
     let totalKilos =
-      (barbell / 2.2) +
-      (parseInt(fiftyFives) * 50) +
-      (parseInt(fortyFives) * 41) +
-      (parseInt(thirtyFives) * 32) +
-      (parseInt(twentyFives) * 22) +
-      (parseInt(fifteens) * 14) +
-      (parseInt(tens) * 9) +
-      (Math.ceil(parseInt(fives) * 4.6)) +
-      (Math.ceil(parseInt(twoPointFives) * 2.2))
-
+      Math.ceil(
+        (barbell / 2.2) +
+        (parseInt(fiftyFives) * 50) +
+        (parseInt(fortyFives) * 41) +
+        (parseInt(thirtyFives) * 32) +
+        (parseInt(twentyFives) * 22) +
+        (parseInt(fifteens) * 14) +
+        (parseInt(tens) * 9) +
+        (parseInt(fives) * 4.6) +
+        (parseInt(twoPointFives) * 2.2)
+      )
     return (
       <Container>
         <Row>
