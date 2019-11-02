@@ -59,7 +59,7 @@ export default class OlympicLifts extends React.Component {
     return (
       <React.Fragment>
         {!editable &&
-          <Container>
+          <Container id="olyLiftContainer">
             <br />
             <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
               <Row>
@@ -102,7 +102,7 @@ export default class OlympicLifts extends React.Component {
           </Container>
         }
         {editable &&
-          <Container>
+          <Container id="olyLiftContainer">
             <br />
               <Row>
                 <Col sm={{ size: 'auto', offset: 2 }}>

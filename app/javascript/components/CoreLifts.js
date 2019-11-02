@@ -57,7 +57,7 @@ export default class CoreLifts extends React.Component {
     return (
       <React.Fragment>
         {!editable &&
-          <Container>
+          <Container id="coreLiftContainer">
             <br />
             <Button color="primary" onClick={ this.toggle } id="updateButton">Update</Button>
               <Row>
@@ -89,7 +89,7 @@ export default class CoreLifts extends React.Component {
           </Container>
         }
         {editable &&
-          <Container>
+          <Container id="coreLiftContainer">
             <Row>
               <Col xs="6" sm="4">
                 <h5>Back Squat:</h5>
