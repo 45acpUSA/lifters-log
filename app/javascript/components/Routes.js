@@ -55,6 +55,10 @@ export default class Routes extends React.Component {
         boxSizing: "border-box",
         zIndex: 10
       },
+      navBrandStyle: {
+        color: "#fff",
+        fontSize: 30
+      },
       navItemStyle: {
         paddingLeft: 10,
         paddingRight: 10
@@ -74,7 +78,7 @@ export default class Routes extends React.Component {
     return (
       <React.Fragment>
         <Navbar expand="md" style={ navStyles.navBarStyle }>
-          <NavbarBrand href="/">Lifter's Log</NavbarBrand>
+          <NavbarBrand href="/" style={ navStyles.navBrandStyle }>Lifter's Log</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -107,7 +111,7 @@ export default class Routes extends React.Component {
 
               {!userLoggedIn &&
                 <NavItem style={ navStyles.navItemStyle }>
-                  <NavLink href="#users/session" style={{ color: "#fff" }}>
+                  <NavLink href="#users/session" style={{ fontStyle: "italic" }}>
                     Log In
                   </NavLink>
                 </NavItem>
