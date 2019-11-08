@@ -71,6 +71,21 @@ export default class Profile extends React.Component {
 
     return (
       <React.Fragment>
+        {!currentUser &&
+          <Container>
+            <Row>
+              <Col sm="12" md={{ size: 6, offset: 3 }}>
+                <div id="welcomeHeader">
+                  <h2>Focus on your lift, not the math</h2>
+                </div>
+                <br />
+                <div id="welcomeMessage">
+                  <p>If you haven't already, sign up to take full advantage of the app</p>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        }
         {currentUser &&
           <Container>
             <Row>
@@ -103,20 +118,20 @@ export default class Profile extends React.Component {
             </Row>
           </Container>
         }
-        {(currentUser && coreLifts.length > 0 && !showNewCore && !showNewOly) &&
+        {(currentUser && coreLifts && !showNewCore && !showNewOly) &&
           <div>
             <hr />
             { coreLiftsDisplay() }
           </div>
         }
-        {(currentUser && olyLifts.length > 0 && !showNewCore && !showNewOly) &&
+        {(currentUser && olyLifts && !showNewCore && !showNewOly) &&
           <div>
             <hr />
             { olyLiftsDisplay() }
           </div>
         }
 
-        {(currentUser && coreLifts.length < 1 && olyLifts.length < 1 && !showNewCore && !showNewOly) &&
+        {(currentUser && !coreLifts && !olyLifts && !showNewCore && !showNewOly) &&
           <div>
             <hr />
             <br />

@@ -39,20 +39,29 @@ export default class Routes extends React.Component {
   render () {
     const { currentUser, userLoggedIn, userSignInRoute, userSignOutRoute, styles } = this.props
 
-    const navBarStyle = {
-      position: "fixed",
-      top: 0,
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      width: "100%",
-      height: styles.topBarHeight,
-      backgroundColor: "#333",
-      borderBottom: `1px solid ${styles.black(0.1)}`,
-      fontWeight: "bold",
-      padding: "0px 20px",
-      boxSizing: "border-box",
-      zIndex: 10
+    const navStyles = {
+      navBarStyle: {
+        position: "fixed",
+        top: 0,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
+        height: styles.topBarHeight,
+        backgroundColor: "#333",
+        borderBottom: `1px solid ${styles.black(0.1)}`,
+        fontWeight: "bold",
+        padding: "0px 20px",
+        boxSizing: "border-box",
+        zIndex: 10
+      },
+      navItemStyle: {
+        paddingLeft: 10,
+        paddingRight: 10
+      },
+      navLinkStyle: {
+
+      }
     }
 
     const contentStyle = {
@@ -64,22 +73,22 @@ export default class Routes extends React.Component {
 
     return (
       <React.Fragment>
-        <Navbar expand="md" style={ navBarStyle }>
+        <Navbar expand="md" style={ navStyles.navBarStyle }>
           <NavbarBrand href="/">Lifter's Log</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              <NavItem style={ navStyles.navItemStyle }>
                 <NavLink href="#percentage_finder">Percentage Finder</NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem style={ navStyles.navItemStyle }>
                 <NavLink href="#plate_math">Plate Math</NavLink>
               </NavItem>
 
               {userLoggedIn &&
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
-                    {`${currentUser.first_name}'s Stuff`}
+                    {`${currentUser.first_name}'s Profile`}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem href="#">
@@ -97,16 +106,11 @@ export default class Routes extends React.Component {
               }
 
               {!userLoggedIn &&
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    Hello, Guest
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem href="#users/session">
-                      Log In
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                <NavItem style={ navStyles.navItemStyle }>
+                  <NavLink href="#users/session" style={{ color: "#fff" }}>
+                    Log In
+                  </NavLink>
+                </NavItem>
               }
 
             </Nav>

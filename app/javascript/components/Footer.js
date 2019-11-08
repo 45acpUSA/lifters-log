@@ -1,4 +1,5 @@
 import React from "react"
+import { Container, Row, Col } from 'reactstrap'
 
 export default class Footer extends React.Component {
   render () {
@@ -16,6 +17,14 @@ export default class Footer extends React.Component {
           bottom: 0
         }}
       >
+        <Container>
+          <Row>
+            <Col xs="6" style={{ textAlign: "left" }}>Au Standard Development</Col>
+            <Col xs="6" style={{ textAlign: "right" }}>
+              <a href={`mailto: mattauthedev@gmail.com`} target="_blank">Contact Me</a>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
